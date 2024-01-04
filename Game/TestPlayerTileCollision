@@ -1,0 +1,33 @@
+#include <iostream>
+#include "PlayerController.h"
+#include "Player.h"
+#include "Tile.h"
+
+void TestPlayerTileCollision()
+{
+    Player player(Vec2(0.0f, 0.0f), BoundingBox(Vec2(0.0f, 0.0f), 16.0f, 16.0f));
+    PlayerController playerController(&player);
+
+    Vec2 tilePos(20.0f, 0.0f);
+    BoundingBox tileBoundingBox(tilePos, 16.0f, 16.0f);
+    Tile tile(tilePos, tileBoundingBox, TextureType::TEXTURE_SOME_TYPE, true);
+
+    playerController.OnMoveRight(1.0f);// Симулюємо натискання клавіші руху вправо
+
+    // Перевіряємо, чи гравець не змінив свою позицію через колізію з плиткою
+    Vec2 expectedPosition(0.0f, 0.0f);  // Очікуємо, що гравець залишиться на місці
+    if (player.GetPosition() == expectedPosition && player.CanMove())
+    {
+        std::cout << "Test PlayerTileCollision Passed" << std::endl;
+    }
+    else
+    {
+        std::cerr << "Test PlayerTileCollision Failed" << std::endl;
+    }
+}
+
+int main()
+{
+    TestPlayerTileCollision();
+    return 0;
+}
