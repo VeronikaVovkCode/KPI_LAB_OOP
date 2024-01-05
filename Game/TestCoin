@@ -1,0 +1,41 @@
+#include "Coin.h"
+#include "Player.h"
+
+#include <iostream>
+
+void TestCoinCollisionWithPlayer() {
+    Vec2 coinPos(100.0f, 100.0f); // Позиція монетки
+    BoundingBox coinBoundingBox(/* вказати розміри області монетки */);
+    Coin coin(coinPos, coinBoundingBox);
+
+    Vec2 playerPos(120.0f, 120.0f); // Позиція гравця (поблизу монетки)
+    BoundingBox playerBoundingBox(/* вказати розміри області гравця */);
+    Player player(playerPos, playerBoundingBox); 
+
+    // Симуляція колізії гравця та монетки
+    if (coin.Collide(&player)) {
+        std::cout << "Player collided with coin." << std::endl;
+        coin.OnEntityCollision(&player); // Маніпуляції, які мають відбутися при колізії з гравцем
+    }
+}
+
+void TestCoinAnimation() {
+    Vec2 coinPos(100.0f, 100.0f); // Позиція монетки
+    BoundingBox coinBoundingBox(/* вказати розміри області монетки */);
+    Coin coin(coinPos, coinBoundingBox);
+
+    float timestep = 0.1f; // крок часу для оновлення анімації
+
+    // Симуляція оновлення анімації протягом декількох кроків часу
+    for (int i = 0; i < 5; ++i) {
+        coin.OnUpdate(timestep); // Оновлення анімації монетки
+        
+    }
+}
+
+int main() {
+    TestCoinCollisionWithPlayer();
+    TestCoinAnimation();
+
+    return 0;
+}
