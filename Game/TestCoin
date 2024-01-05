@@ -5,11 +5,11 @@
 
 void TestCoinCollisionWithPlayer() {
     Vec2 coinPos(100.0f, 100.0f); // Позиція монетки
-    BoundingBox coinBoundingBox(/* вказати розміри області монетки */);
+    BoundingBox coinBoundingBox(coinPos, 16.0f, 16.0f);
     Coin coin(coinPos, coinBoundingBox);
 
     Vec2 playerPos(120.0f, 120.0f); // Позиція гравця (поблизу монетки)
-    BoundingBox playerBoundingBox(/* вказати розміри області гравця */);
+    BoundingBox playerBoundingBox(playerPos, 16.0f, 16.0f);
     Player player(playerPos, playerBoundingBox); 
 
     // Симуляція колізії гравця та монетки
@@ -21,7 +21,7 @@ void TestCoinCollisionWithPlayer() {
 
 void TestCoinAnimation() {
     Vec2 coinPos(100.0f, 100.0f); // Позиція монетки
-    BoundingBox coinBoundingBox(/* вказати розміри області монетки */);
+    BoundingBox coinBoundingBox(coinPos, 16.0f, 16.0f);
     Coin coin(coinPos, coinBoundingBox);
 
     float timestep = 0.1f; // крок часу для оновлення анімації
@@ -29,7 +29,6 @@ void TestCoinAnimation() {
     // Симуляція оновлення анімації протягом декількох кроків часу
     for (int i = 0; i < 5; ++i) {
         coin.OnUpdate(timestep); // Оновлення анімації монетки
-        
     }
 }
 
